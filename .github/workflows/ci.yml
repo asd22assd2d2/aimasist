@@ -19,9 +19,6 @@ jobs:
       - name: Install deps
         run: npm install
         working-directory: tauri-app
-      - name: Build frontend
-        run: npm run build
-        working-directory: tauri-app
       - name: Build EXE
         run: npm run tauri build
         working-directory: tauri-app
