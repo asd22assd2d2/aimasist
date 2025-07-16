@@ -1,30 +1,18 @@
-name: Build Game Tool EXE
-
-on:
-  push:
-    branches: [main]
-
-jobs:
-  build:
-    runs-on: windows-latest
-
     steps:
       - uses: actions/checkout@v4
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: 18
-      - name: Setup Rust
+          node-version: '18'
+      - name: Setup Rust toolchain
         uses: dtolnay/rust-toolchain@stable
-      - name: Install deps
+      - name: Install dependencies
         run: npm install
         working-directory: tauri-app
-      - name: Build frontend
-        run: npm run build
-        working-directory: tauri-app
-      - name: Build EXE
-        run: npm run tauri build
-        working-directory: tauri-app
+      - name: Build Windows EXE
+        uses: tauri-apps/tauri-action@v0
+        with:
+          projectPath: 'tauri-app'
       - name: Upload .exe artifact
         uses: actions/upload-artifact@v4
         with:
