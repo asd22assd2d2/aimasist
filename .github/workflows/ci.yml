@@ -16,7 +16,7 @@ jobs:
         uses: tauri-apps/tauri-action@v0
         with:
           projectPath: "tauri-app"
-      - name: Upload Windows executable
+      - name: Upload Windows installer
         uses: actions/upload-artifact@v4
         with:
           name: game-tool-exe
